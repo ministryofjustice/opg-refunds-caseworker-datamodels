@@ -4,6 +4,10 @@ namespace Opg\Refunds\Caseworker\DataModel;
 
 use InvalidArgumentException;
 
+/**
+ * Class AbstractDataModel
+ * @package Opg\Refunds\Caseworker\DataModel
+ */
 class AbstractDataModel
 {
     /**

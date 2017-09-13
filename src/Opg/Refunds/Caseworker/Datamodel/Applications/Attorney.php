@@ -6,6 +6,10 @@ use Opg\Refunds\Caseworker\DataModel\AbstractDataModel;
 use Opg\Refunds\Caseworker\DataModel\Common\Name;
 use DateTime;
 
+/**
+ * Class Attorney
+ * @package Opg\Refunds\Caseworker\DataModel\Applications
+ */
 class Attorney extends AbstractDataModel
 {
     /**

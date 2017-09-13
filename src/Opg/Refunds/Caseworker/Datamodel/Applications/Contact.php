@@ -4,6 +4,10 @@ namespace Opg\Refunds\Caseworker\DataModel\Applications;
 
 use Opg\Refunds\Caseworker\DataModel\AbstractDataModel;
 
+/**
+ * Class Contact
+ * @package Opg\Refunds\Caseworker\DataModel\Applications
+ */
 class Contact extends AbstractDataModel
 {
     /**
