@@ -35,10 +35,13 @@ class Name extends AbstractDataModel
 
     /**
      * @param string $title
+     * @return $this
      */
     public function setTitle(string $title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     /**
@@ -51,10 +54,13 @@ class Name extends AbstractDataModel
 
     /**
      * @param string $first
+     * @return $this
      */
     public function setFirst(string $first)
     {
         $this->first = $first;
+
+        return $this;
     }
 
     /**
@@ -67,9 +73,12 @@ class Name extends AbstractDataModel
 
     /**
      * @param string $last
+     * @return $this
      */
     public function setLast(string $last)
     {
         $this->last = $last;
+
+        return $this;
     }
 }

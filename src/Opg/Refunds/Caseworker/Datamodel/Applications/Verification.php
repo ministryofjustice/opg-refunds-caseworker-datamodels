@@ -35,10 +35,13 @@ class Verification extends AbstractDataModel
 
     /**
      * @param string $caseNumber
+     * @return $this
      */
     public function setCaseNumber(string $caseNumber)
     {
         $this->caseNumber = $caseNumber;
+
+        return $this;
     }
 
     /**
@@ -51,10 +54,13 @@ class Verification extends AbstractDataModel
 
     /**
      * @param string $donorPostcode
+     * @return $this
      */
     public function setDonorPostcode(string $donorPostcode)
     {
         $this->donorPostcode = $donorPostcode;
+
+        return $this;
     }
 
     /**
@@ -67,10 +73,13 @@ class Verification extends AbstractDataModel
 
     /**
      * @param string $attorneyPostcode
+     * @return $this
      */
     public function setAttorneyPostcode(string $attorneyPostcode)
     {
         $this->attorneyPostcode = $attorneyPostcode;
+
+        return $this;
     }
 
     protected function populate(array $data)

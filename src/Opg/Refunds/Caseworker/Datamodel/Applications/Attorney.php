@@ -32,10 +32,13 @@ class Attorney extends AbstractDataModel
 
     /**
      * @param Name $name
+     * @return $this
      */
     public function setName(Name $name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -48,10 +51,13 @@ class Attorney extends AbstractDataModel
 
     /**
      * @param DateTime $dob
+     * @return $this
      */
     public function setDob(DateTime $dob)
     {
         $this->dob = $dob;
+
+        return $this;
     }
 
     protected function map($property, $value)

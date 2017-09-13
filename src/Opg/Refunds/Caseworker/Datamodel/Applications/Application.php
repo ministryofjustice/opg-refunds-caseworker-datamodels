@@ -61,10 +61,13 @@ class Application extends AbstractDataModel
 
     /**
      * @param string $applicant
+     * @return $this
      */
     public function setApplicant(string $applicant)
     {
         $this->applicant = $applicant;
+
+        return $this;
     }
 
     /**
@@ -77,10 +80,13 @@ class Application extends AbstractDataModel
 
     /**
      * @param Donor $donor
+     * @return $this
      */
     public function setDonor(Donor $donor)
     {
         $this->donor = $donor;
+
+        return $this;
     }
 
     /**
@@ -93,10 +99,13 @@ class Application extends AbstractDataModel
 
     /**
      * @param Attorney $attorney
+     * @return $this
      */
     public function setAttorney(Attorney $attorney)
     {
         $this->attorney = $attorney;
+
+        return $this;
     }
 
     /**
@@ -109,10 +118,13 @@ class Application extends AbstractDataModel
 
     /**
      * @param Contact $contact
+     * @return $this
      */
     public function setContact(Contact $contact)
     {
         $this->contact = $contact;
+
+        return $this;
     }
 
     /**
@@ -125,10 +137,13 @@ class Application extends AbstractDataModel
 
     /**
      * @param Verification $verification
+     * @return $this
      */
     public function setVerification(Verification $verification)
     {
         $this->verification = $verification;
+
+        return $this;
     }
 
     /**
@@ -141,10 +156,13 @@ class Application extends AbstractDataModel
 
     /**
      * @param Account $account
+     * @return $this
      */
     public function setAccount(Account $account)
     {
         $this->account = $account;
+
+        return $this;
     }
 
     /**
@@ -157,10 +175,13 @@ class Application extends AbstractDataModel
 
     /**
      * @param DateTime $submitted
+     * @return $this
      */
     public function setSubmitted(DateTime $submitted)
     {
         $this->submitted = $submitted;
+
+        return $this;
     }
 
     /**
@@ -173,10 +194,13 @@ class Application extends AbstractDataModel
 
     /**
      * @param DateTime $expected
+     * @return $this
      */
     public function setExpected(DateTime $expected)
     {
         $this->expected = $expected;
+
+        return $this;
     }
 
     protected function map($property, $value)
