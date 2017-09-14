@@ -3,13 +3,19 @@
 namespace Opg\Refunds\Caseworker\DataModel;
 
 use InvalidArgumentException;
+use DateTime;
 
 /**
  * Class AbstractDataModel
  * @package Opg\Refunds\Caseworker\DataModel
  */
-class AbstractDataModel
+abstract class AbstractDataModel
 {
+    /**
+     * ISO8601 including microseconds
+     */
+    const DATE_TIME_STRING_FORMAT = 'Y-m-d\TH:i:s.uO';
+
     /**
      * Builds and populates $this data model object.
      *
@@ -52,6 +58,13 @@ class AbstractDataModel
     {
         // Foreach each passed property...
         foreach ($data as $k => $v) {
+            //  Translate the array key property to the actual property value
+            if (strpos($k, '-') !== false) {
+                $k = ucwords($k, '-');
+                $k = str_replace('-', '', $k);
+                $k = lcfirst($k);
+            }
+
             // Only include known properties during the import...
             if (property_exists($this, $k) && !is_null($v)) {
                 $this->{$k} = $this->map($k, $v);
@@ -73,5 +86,40 @@ class AbstractDataModel
     protected function map($property, $value)
     {
         return $value;
+    }
+
+    /**
+     * Returns $this as an array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $objectValues = get_object_vars($this);
+
+        $values = [];
+
+        foreach ($objectValues as $varName => $varValue) {
+            //  Translate property name to array key property
+            $varName = strtolower(preg_replace('/([^A-Z-])([A-Z])/', '$1-$2', $varName));
+
+            if (is_scalar($varValue)) {
+                $values[$varName] = $varValue;
+            } elseif ($varValue instanceof DateTime) {
+                $values[$varName] = $varValue->format(self::DATE_TIME_STRING_FORMAT);
+            } else {
+                if (is_array($varValue)) {
+                    foreach ($varValue as $thisVarValueKey => $thisVarValue) {
+                        if ($thisVarValue instanceof AbstractDataModel) {
+                            $values[$varName][$thisVarValueKey] = $thisVarValue->toArray();
+                        }
+                    }
+                } elseif ($varValue instanceof AbstractDataModel) {
+                    $values[$varName] = $varValue->toArray();
+                }
+            }
+        }
+
+        return $values;
     }
 }
