@@ -120,7 +120,7 @@ class ApplicationTest extends AbstractDataModelTestCase
             'donor'        => $this->donor->toArray(),
             'attorney'     => $this->attorney->toArray(),
             'contact'      => $this->contact->toArray(),
-            'case-number'  => $this->caseNumber->toArray(),
+            'case-number'   => $this->caseNumber->toArray(),
             'postcodes'    => $this->postcodes->toArray(),
             'account'      => $this->account->toArray(),
             'submitted'    => $this->dateTimeToString($now),

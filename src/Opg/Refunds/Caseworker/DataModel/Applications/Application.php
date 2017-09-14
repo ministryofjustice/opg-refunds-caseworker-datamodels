@@ -241,7 +241,7 @@ class Application extends AbstractDataModel
                 return (($value instanceof Attorney || is_null($value)) ? $value : new Attorney($value));
             case 'contact':
                 return (($value instanceof Contact || is_null($value)) ? $value : new Contact($value));
-            case 'case-number':
+            case 'caseNumber':
                 return (($value instanceof CaseNumber || is_null($value)) ? $value : new CaseNumber($value));
             case 'postcodes':
                 return (($value instanceof Postcodes || is_null($value)) ? $value : new Postcodes($value));
