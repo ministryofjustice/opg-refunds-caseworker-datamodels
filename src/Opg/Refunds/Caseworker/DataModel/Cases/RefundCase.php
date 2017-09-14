@@ -137,7 +137,7 @@ class RefundCase extends AbstractDataModel
     /**
      * @return DateTime
      */
-    public function getUpdatedDateTime(): DateTime
+    public function getUpdatedDateTime()
     {
         return $this->updatedDateTime;
     }
@@ -213,7 +213,7 @@ class RefundCase extends AbstractDataModel
     /**
      * @return int
      */
-    public function getAssignedToId(): int
+    public function getAssignedToId()
     {
         return $this->assignedToId;
     }
@@ -232,7 +232,7 @@ class RefundCase extends AbstractDataModel
     /**
      * @return DateTime
      */
-    public function getAssignedDateTime(): DateTime
+    public function getAssignedDateTime()
     {
         return $this->assignedDateTime;
     }
@@ -251,7 +251,7 @@ class RefundCase extends AbstractDataModel
     /**
      * @return DateTime
      */
-    public function getFinishedDateTime(): DateTime
+    public function getFinishedDateTime()
     {
         return $this->finishedDateTime;
     }
@@ -289,7 +289,7 @@ class RefundCase extends AbstractDataModel
     /**
      * @return Payment
      */
-    public function getPayment(): Payment
+    public function getPayment()
     {
         return $this->payment;
     }

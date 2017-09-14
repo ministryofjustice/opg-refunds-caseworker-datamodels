@@ -91,7 +91,7 @@ class Payment extends AbstractDataModel
     /**
      * @return DateTime
      */
-    public function getProcessedDateTime(): DateTime
+    public function getProcessedDateTime()
     {
         return $this->processedDateTime;
     }
