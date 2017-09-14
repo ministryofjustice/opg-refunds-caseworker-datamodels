@@ -2,34 +2,18 @@
 
 namespace OpgTest\Refunds\Caseworker\DataModel\Applications;
 
-use Opg\Refunds\Caseworker\DataModel\Applications\Verification;
+use Opg\Refunds\Caseworker\DataModel\Applications\Postcodes;
 use OpgTest\Refunds\Caseworker\DataModel\AbstractDataModelTestCase;
 
-class VerificationTest extends AbstractDataModelTestCase
+class PostcodesTest extends AbstractDataModelTestCase
 {
-
-    protected $caseNumber;
-
-    /**
-     * @var string
-     */
-    protected $donorPostcode;
-
-    /**
-     * @var string
-     */
-    protected $attorneyPostcode;
-
-
     public function testGetsAndSets()
     {
-        $model = new Verification();
+        $model = new Postcodes();
 
-        $model->setCaseNumber('123456789')
-              ->setDonorPostcode('AB1 2CD')
+        $model->setDonorPostcode('AB1 2CD')
               ->setAttorneyPostcode('WX8 YZ9');
 
-        $this->assertEquals('123456789', $model->getCaseNumber());
         $this->assertEquals('AB1 2CD', $model->getDonorPostcode());
         $this->assertEquals('WX8 YZ9', $model->getAttorneyPostcode());
     }
@@ -37,12 +21,11 @@ class VerificationTest extends AbstractDataModelTestCase
     public function testPopulateAndToArray()
     {
         $data = [
-            'case-number'       => '123456789',
             'donor-postcode'    => 'AB1 2CD',
             'attorney-postcode' => 'WX8 YZ9',
         ];
 
-        $model = new Verification($data);
+        $model = new Postcodes($data);
 
         $this->assertSame($data, $model->toArray());
     }

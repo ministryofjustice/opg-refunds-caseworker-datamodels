@@ -5,9 +5,10 @@ namespace OpgTest\Refunds\Caseworker\DataModel\Applications;
 use Opg\Refunds\Caseworker\DataModel\Applications\Account;
 use Opg\Refunds\Caseworker\DataModel\Applications\Application;
 use Opg\Refunds\Caseworker\DataModel\Applications\Attorney;
+use Opg\Refunds\Caseworker\DataModel\Applications\CaseNumber;
 use Opg\Refunds\Caseworker\DataModel\Applications\Contact;
 use Opg\Refunds\Caseworker\DataModel\Applications\Donor;
-use Opg\Refunds\Caseworker\DataModel\Applications\Verification;
+use Opg\Refunds\Caseworker\DataModel\Applications\Postcodes;
 use OpgTest\Refunds\Caseworker\DataModel\AbstractDataModelTestCase;
 use DateTime;
 
@@ -29,9 +30,14 @@ class ApplicationTest extends AbstractDataModelTestCase
     private $contact;
 
     /**
-     * @var Verification
+     * @var CaseNumber
      */
-    private $verification;
+    private $caseNumber;
+
+    /**
+     * @var Postcodes
+     */
+    private $postcodes;
 
     /**
      * @var Account
@@ -64,8 +70,11 @@ class ApplicationTest extends AbstractDataModelTestCase
             'mobile' => '07712 123456',
         ]);
 
-        $this->verification = new Verification([
-            'case-number'       => '123456789',
+        $this->caseNumber = new CaseNumber([
+            'poa-case-number' => '123456789'
+        ]);
+
+        $this->postcodes = new Postcodes([
             'donor-postcode'    => 'AB1 2CD',
             'attorney-postcode' => 'WX9 8YZ',
         ]);
@@ -85,7 +94,8 @@ class ApplicationTest extends AbstractDataModelTestCase
               ->setDonor($this->donor)
               ->setAttorney($this->attorney)
               ->setContact($this->contact)
-              ->setVerification($this->verification)
+              ->setCaseNumber($this->caseNumber)
+              ->setPostcodes($this->postcodes)
               ->setAccount($this->account)
               ->setSubmitted($now)
               ->setExpected($now);
@@ -94,7 +104,8 @@ class ApplicationTest extends AbstractDataModelTestCase
         $this->assertEquals($this->donor, $model->getDonor());
         $this->assertEquals($this->attorney, $model->getAttorney());
         $this->assertEquals($this->contact, $model->getContact());
-        $this->assertEquals($this->verification, $model->getVerification());
+        $this->assertEquals($this->caseNumber, $model->getCaseNumber());
+        $this->assertEquals($this->postcodes, $model->getPostcodes());
         $this->assertEquals($this->account, $model->getAccount());
         $this->assertEquals($now, $model->getSubmitted());
         $this->assertEquals($now, $model->getExpected());
@@ -109,7 +120,8 @@ class ApplicationTest extends AbstractDataModelTestCase
             'donor'        => $this->donor->toArray(),
             'attorney'     => $this->attorney->toArray(),
             'contact'      => $this->contact->toArray(),
-            'verification' => $this->verification->toArray(),
+            'case-number'  => $this->caseNumber->toArray(),
+            'postcodes'    => $this->postcodes->toArray(),
             'account'      => $this->account->toArray(),
             'submitted'    => $this->dateTimeToString($now),
             'expected'     => $this->dateTimeToString($now),
