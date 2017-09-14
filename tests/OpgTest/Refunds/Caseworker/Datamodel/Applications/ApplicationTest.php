@@ -65,9 +65,9 @@ class ApplicationTest extends AbstractDataModelTestCase
         ]);
 
         $this->verification = new Verification([
-            'case_number'       => '123456789',
-            'donor_postcode'    => 'AB1 2CD',
-            'attorney_postcode' => 'WX9 8YZ',
+            'case-number'       => '123456789',
+            'donor-postcode'    => 'AB1 2CD',
+            'attorney-postcode' => 'WX9 8YZ',
         ]);
 
         $this->account = new Account([

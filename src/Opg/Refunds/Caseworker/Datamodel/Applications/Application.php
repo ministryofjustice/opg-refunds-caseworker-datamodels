@@ -52,6 +52,17 @@ class Application extends AbstractDataModel
     protected $expected;
 
     /**
+     * Application constructor
+     * @param null $data
+     */
+    public function __construct($data = null)
+    {
+        $this->verification = new Verification();
+
+        parent::__construct($data);
+    }
+
+    /**
      * @return string
      */
     public function getApplicant(): string
@@ -203,6 +214,40 @@ class Application extends AbstractDataModel
         return $this;
     }
 
+    /**
+     * @param array $data
+     * @return $this
+     */
+    protected function populate(array $data)
+    {
+        foreach ($data as $k => $v) {
+            switch ($k) {
+                case 'case-number':
+                    if ($v['have-poa-case-number'] === 'yes') {
+                        $this->verification->setCaseNumber($v['poa-case-number']);
+                    }
+                    break;
+                case 'postcodes':
+                    if (in_array('donor-postcode', $v['postcode-options'])) {
+                        $this->verification->setDonorPostcode($v['donor-postcode']);
+                    }
+                    if (in_array('attorney-postcode', $v['postcode-options'])) {
+                        $this->verification->setAttorneyPostcode($v['attorney-postcode']);
+                    }
+                    break;
+            }
+        }
+
+        return parent::populate($data);
+    }
+
+    /**
+     * Map properties to correct types
+     *
+     * @param string $property
+     * @param mixed $value
+     * @return DateTime|mixed|Account|Attorney|Contact|Donor|Verification
+     */
     protected function map($property, $value)
     {
         switch ($property) {

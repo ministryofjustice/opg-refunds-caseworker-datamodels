@@ -11,15 +11,21 @@ class AccountTest extends AbstractDataModelTestCase
     {
         $model = new Account();
 
-        $model->setName('Phoebe Buffay');
+        $model->setName('Phoebe Buffay')
+              ->setAccountNumber('12345678')
+              ->setSortCode('123456');
 
         $this->assertEquals('Phoebe Buffay', $model->getName());
+        $this->assertEquals('12345678', $model->getAccountNumber());
+        $this->assertEquals('123456', $model->getSortCode());
     }
 
     public function testPopulateAndToArray()
     {
         $data = [
-            'name' => 'Phoebe Buffay',
+            'name'           => 'Phoebe Buffay',
+            'account-number' => '12345678',
+            'sort-code'      => '123456',
         ];
 
         $model = new Account($data);
