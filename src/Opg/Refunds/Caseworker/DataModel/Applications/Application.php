@@ -32,9 +32,14 @@ class Application extends AbstractDataModel
     protected $contact;
 
     /**
-     * @var Verification
+     * @var CaseNumber
      */
-    protected $verification;
+    protected $caseNumber;
+
+    /**
+     * @var Postcodes
+     */
+    protected $postcodes;
 
     /**
      * @var Account
@@ -128,21 +133,38 @@ class Application extends AbstractDataModel
     }
 
     /**
-     * @return Verification
+     * @return CaseNumber
      */
-    public function getVerification(): Verification
+    public function getCaseNumber(): CaseNumber
     {
-        return $this->verification;
+        return $this->caseNumber;
     }
 
     /**
-     * @param Verification $verification
-     * @return $this
+     * @param CaseNumber $caseNumber
+     * @return Application
      */
-    public function setVerification(Verification $verification)
+    public function setCaseNumber(CaseNumber $caseNumber): Application
     {
-        $this->verification = $verification;
+        $this->caseNumber = $caseNumber;
+        return $this;
+    }
 
+    /**
+     * @return Postcodes
+     */
+    public function getPostcodes(): Postcodes
+    {
+        return $this->postcodes;
+    }
+
+    /**
+     * @param Postcodes $postcodes
+     * @return Application
+     */
+    public function setPostcodes(Postcodes $postcodes): Application
+    {
+        $this->postcodes = $postcodes;
         return $this;
     }
 
@@ -203,6 +225,13 @@ class Application extends AbstractDataModel
         return $this;
     }
 
+    /**
+     * Map properties to correct types
+     *
+     * @param string $property
+     * @param mixed $value
+     * @return DateTime|mixed|Account|Attorney|Contact|Donor|CaseNumber|Postcodes
+     */
     protected function map($property, $value)
     {
         switch ($property) {
@@ -212,8 +241,10 @@ class Application extends AbstractDataModel
                 return (($value instanceof Attorney || is_null($value)) ? $value : new Attorney($value));
             case 'contact':
                 return (($value instanceof Contact || is_null($value)) ? $value : new Contact($value));
-            case 'verification':
-                return (($value instanceof Verification || is_null($value)) ? $value : new Verification($value));
+            case 'caseNumber':
+                return (($value instanceof CaseNumber || is_null($value)) ? $value : new CaseNumber($value));
+            case 'postcodes':
+                return (($value instanceof Postcodes || is_null($value)) ? $value : new Postcodes($value));
             case 'account':
                 return (($value instanceof Account || is_null($value)) ? $value : new Account($value));
             case 'submitted':

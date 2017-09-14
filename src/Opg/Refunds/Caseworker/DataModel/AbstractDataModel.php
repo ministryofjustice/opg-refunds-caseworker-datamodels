@@ -2,8 +2,8 @@
 
 namespace Opg\Refunds\Caseworker\DataModel;
 
-use InvalidArgumentException;
 use DateTime;
+use InvalidArgumentException;
 
 /**
  * Class AbstractDataModel
@@ -52,7 +52,7 @@ abstract class AbstractDataModel
      * Populates the concrete class' properties with the array.
      *
      * @param array $data
-     * @return self
+     * @return $this
      */
     protected function populate(array $data)
     {
@@ -81,7 +81,7 @@ abstract class AbstractDataModel
      *
      * @param $property string The property name.
      * @param $value mixed The value we've been passed.
-     * @return mixed The potentially updated value.
+     * @return mixed
      */
     protected function map($property, $value)
     {

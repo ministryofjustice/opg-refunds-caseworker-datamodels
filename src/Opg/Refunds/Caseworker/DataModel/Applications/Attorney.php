@@ -18,6 +18,11 @@ class Attorney extends AbstractDataModel
     protected $name;
 
     /**
+     * @var Name
+     */
+    protected $poaName;
+
+    /**
      * @var DateTime
      */
     protected $dob;
@@ -42,6 +47,25 @@ class Attorney extends AbstractDataModel
     }
 
     /**
+     * @return Name
+     */
+    public function getPoaName(): Name
+    {
+        return $this->poaName;
+    }
+
+    /**
+     * @param Name $poaName
+     * @return $this
+     */
+    public function setPoaName(Name $poaName)
+    {
+        $this->poaName = $poaName;
+
+        return $this;
+    }
+
+    /**
      * @return DateTime
      */
     public function getDob(): DateTime
@@ -60,10 +84,18 @@ class Attorney extends AbstractDataModel
         return $this;
     }
 
+    /**
+     * Map properties to correct types
+     *
+     * @param string $property
+     * @param mixed $value
+     * @return DateTime|mixed|Name
+     */
     protected function map($property, $value)
     {
         switch ($property) {
             case 'name':
+            case 'poaName':
                 return (($value instanceof Name || is_null($value)) ? $value : new Name($value));
             case 'dob':
                 return (($value instanceof DateTime || is_null($value)) ? $value : new DateTime($value));

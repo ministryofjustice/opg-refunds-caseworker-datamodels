@@ -14,6 +14,11 @@ class DonorTest extends AbstractDataModelTestCase
      */
     private $name;
 
+    /**
+     * @var Name
+     */
+    private $poaName;
+
     public function setUp()
     {
         //  Set up the data entities to reuse
@@ -21,6 +26,12 @@ class DonorTest extends AbstractDataModelTestCase
             'title' => 'Miss',
             'first' => 'Rachel',
             'last'  => 'Green',
+        ]);
+
+        $this->poaName = new Name([
+            'title' => 'Mrs',
+            'first' => 'Someone',
+            'last'  => 'Else',
         ]);
     }
 
@@ -31,9 +42,11 @@ class DonorTest extends AbstractDataModelTestCase
         $dob = new DateTime('1969-02-11');
 
         $model->setName($this->name)
+              ->setPoaName($this->poaName)
               ->setDob($dob);
 
         $this->assertEquals($this->name, $model->getName());
+        $this->assertEquals($this->poaName, $model->getPoaName());
         $this->assertEquals($dob, $model->getDob());
     }
 
@@ -42,8 +55,9 @@ class DonorTest extends AbstractDataModelTestCase
         $dob = new DateTime('1969-02-11');
 
         $data = [
-            'name'  => $this->name->toArray(),
-            'dob'   => $this->dateTimeToString($dob),
+            'name'     => $this->name->toArray(),
+            'poa-name' => $this->poaName->toArray(),
+            'dob'      => $this->dateTimeToString($dob),
         ];
 
         $model = new Donor($data);

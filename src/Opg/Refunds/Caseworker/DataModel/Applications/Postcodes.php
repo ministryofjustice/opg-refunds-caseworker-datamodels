@@ -5,16 +5,11 @@ namespace Opg\Refunds\Caseworker\DataModel\Applications;
 use Opg\Refunds\Caseworker\DataModel\AbstractDataModel;
 
 /**
- * Class Verification
+ * Class Postcodes
  * @package Opg\Refunds\Caseworker\DataModel\Applications
  */
-class Verification extends AbstractDataModel
+class Postcodes extends AbstractDataModel
 {
-    /**
-     * @var string
-     */
-    protected $caseNumber;
-
     /**
      * @var string
      */
@@ -28,35 +23,16 @@ class Verification extends AbstractDataModel
     /**
      * @return string
      */
-    public function getCaseNumber(): string
-    {
-        return $this->caseNumber;
-    }
-
-    /**
-     * @param string $caseNumber
-     * @return $this
-     */
-    public function setCaseNumber(string $caseNumber)
-    {
-        $this->caseNumber = $caseNumber;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDonorPostcode(): string
+    public function getDonorPostcode()
     {
         return $this->donorPostcode;
     }
 
     /**
      * @param string $donorPostcode
-     * @return $this
+     * @return Postcodes
      */
-    public function setDonorPostcode(string $donorPostcode)
+    public function setDonorPostcode(string $donorPostcode): Postcodes
     {
         $this->donorPostcode = $donorPostcode;
 
@@ -66,16 +42,16 @@ class Verification extends AbstractDataModel
     /**
      * @return string
      */
-    public function getAttorneyPostcode(): string
+    public function getAttorneyPostcode()
     {
         return $this->attorneyPostcode;
     }
 
     /**
      * @param string $attorneyPostcode
-     * @return $this
+     * @return Postcodes
      */
-    public function setAttorneyPostcode(string $attorneyPostcode)
+    public function setAttorneyPostcode(string $attorneyPostcode): Postcodes
     {
         $this->attorneyPostcode = $attorneyPostcode;
 
