@@ -57,6 +57,11 @@ class Caseworker extends AbstractDataModel
     protected $tokenExpires;
 
     /**
+     * @var RefundCase[]
+     */
+    protected $refundCases;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -206,5 +211,39 @@ class Caseworker extends AbstractDataModel
         $this->tokenExpires = $tokenExpires;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRefundCases()
+    {
+        return $this->refundCases;
+    }
+
+    /**
+     * @param array $refundCases
+     * @return $this
+     */
+    public function setRefundCases(array $refundCases)
+    {
+        $this->refundCases = $refundCases;
+
+        return $this;
+    }
+
+    /**
+     * Returns $this as an array - exclude the fields in the filter array if provided
+     *
+     * @param array $excludeFilter
+     * @return array
+     */
+    public function toArray(array $excludeFilter = [])
+    {
+        //  For security reasons don't extract the password hash value to an array
+        //  If that value is required it can be purposefully retrieved using the get method above
+        return parent::toArray(array_merge($excludeFilter, [
+            'password-hash',
+        ]));
     }
 }
