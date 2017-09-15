@@ -233,6 +233,25 @@ class Caseworker extends AbstractDataModel
     }
 
     /**
+     * Map properties to correct types
+     *
+     * @param string $property
+     * @param mixed $value
+     * @return mixed
+     */
+    protected function map($property, $value)
+    {
+        switch ($property) {
+            case 'refundCases':
+                return array_map(function ($value) {
+                    return ($value instanceof RefundCase ? $value : new RefundCase($value));
+                }, $value);
+            default:
+                return parent::map($property, $value);
+        }
+    }
+
+    /**
      * Returns $this as an array - exclude the fields in the filter array if provided
      *
      * @param array $excludeFilter
