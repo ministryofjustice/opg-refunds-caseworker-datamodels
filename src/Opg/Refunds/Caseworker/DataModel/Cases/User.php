@@ -5,10 +5,10 @@ namespace Opg\Refunds\Caseworker\DataModel\Cases;
 use Opg\Refunds\Caseworker\DataModel\AbstractDataModel;
 
 /**
- * Class Caseworker
+ * Class User
  * @package Opg\Refunds\Caseworker\DataModel\Cases
  */
-class Caseworker extends AbstractDataModel
+class User extends AbstractDataModel
 {
     const ROLE_CASEWORKER = 'Caseworker';
     const ROLE_REPORTING  = 'Reporting';
