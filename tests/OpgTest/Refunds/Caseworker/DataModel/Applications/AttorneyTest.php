@@ -42,19 +42,19 @@ class AttorneyTest extends AbstractDataModelTestCase
         $this->assertEquals($dob, $model->getCurrent()->getDob());
     }
 
-    public function testPopulateAndToArray()
+    public function testPopulateAndGetArrayCopy()
     {
         $dob = new DateTime('1969-08-19');
 
         $data = [
             'current' => [
-                'name'  => $this->name->toArray(),
+                'name'  => $this->name->getArrayCopy(),
                 'dob'   => $this->dateTimeToString($dob),
             ]
         ];
 
         $model = new Attorney($data);
 
-        $this->assertSame($data, $model->toArray());
+        $this->assertSame($data, $model->getArrayCopy());
     }
 }
