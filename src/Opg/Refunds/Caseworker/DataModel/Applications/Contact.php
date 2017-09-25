@@ -23,7 +23,7 @@ class Contact extends AbstractDataModel
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -42,7 +42,7 @@ class Contact extends AbstractDataModel
     /**
      * @return string
      */
-    public function getMobile(): string
+    public function getMobile()
     {
         return $this->mobile;
     }
