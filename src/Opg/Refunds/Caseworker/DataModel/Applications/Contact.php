@@ -18,7 +18,7 @@ class Contact extends AbstractDataModel
     /**
      * @var string;
      */
-    protected $mobile;
+    protected $phone;
 
     /**
      * @return string
@@ -42,18 +42,18 @@ class Contact extends AbstractDataModel
     /**
      * @return string
      */
-    public function getMobile()
+    public function getPhone()
     {
-        return $this->mobile;
+        return $this->phone;
     }
 
     /**
-     * @param string $mobile
+     * @param string $phone
      * @return $this
      */
-    public function setMobile(string $mobile)
+    public function setPhone(string $phone)
     {
-        $this->mobile = $mobile;
+        $this->phone = $phone;
 
         return $this;
     }
