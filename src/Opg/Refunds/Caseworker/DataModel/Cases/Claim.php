@@ -315,11 +315,12 @@ class Claim extends AbstractDataModel
 
     /**
      * @param Poa[] $poas
-     * @return Claim
+     * @return $this
      */
     public function setPoas(array $poas): Claim
     {
         $this->poas = $poas;
+
         return $this;
     }
 
@@ -333,7 +334,7 @@ class Claim extends AbstractDataModel
 
     /**
      * @param bool $noSiriusPoas
-     * @return Claim
+     * @return $this
      */
     public function setNoSiriusPoas(bool $noSiriusPoas): Claim
     {
@@ -352,7 +353,7 @@ class Claim extends AbstractDataModel
 
     /**
      * @param bool $noMerisPoas
-     * @return Claim
+     * @return $this
      */
     public function setNoMerisPoas(bool $noMerisPoas): Claim
     {
@@ -390,7 +391,7 @@ class Claim extends AbstractDataModel
 
     /**
      * @param Log[] $logs
-     * @return Claim
+     * @return $this
      */
     public function setLogs(array $logs): Claim
     {
@@ -409,7 +410,7 @@ class Claim extends AbstractDataModel
 
     /**
      * @param int $accountHashCount
-     * @return Claim
+     * @return $this
      */
     public function setAccountHashCount(int $accountHashCount): Claim
     {
