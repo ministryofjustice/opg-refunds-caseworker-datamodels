@@ -89,6 +89,16 @@ class Claim extends AbstractDataModel
     protected $noMerisPoas;
 
     /**
+     * @var string
+     */
+    protected $rejectionReason;
+
+    /**
+     * @var string
+     */
+    protected $rejectionReasonDescription;
+
+    /**
      * @var Payment
      */
     protected $payment;
@@ -358,6 +368,44 @@ class Claim extends AbstractDataModel
     public function setNoMerisPoas(bool $noMerisPoas): Claim
     {
         $this->noMerisPoas = $noMerisPoas;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRejectionReason(): string
+    {
+        return $this->rejectionReason;
+    }
+
+    /**
+     * @param string $rejectionReason
+     * @return $this
+     */
+    public function setRejectionReason(string $rejectionReason): Claim
+    {
+        $this->rejectionReason = $rejectionReason;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRejectionReasonDescription(): string
+    {
+        return $this->rejectionReasonDescription;
+    }
+
+    /**
+     * @param string $rejectionReasonDescription
+     * @return $this
+     */
+    public function setRejectionReasonDescription(string $rejectionReasonDescription): Claim
+    {
+        $this->rejectionReasonDescription = $rejectionReasonDescription;
 
         return $this;
     }
