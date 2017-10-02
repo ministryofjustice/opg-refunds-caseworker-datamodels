@@ -3,10 +3,11 @@
 namespace Opg\Refunds\Caseworker\DataModel\Applications;
 
 use DateTime;
+use Opg\Refunds\Caseworker\DataModel\AbstractDataModel;
 use Opg\Refunds\Caseworker\DataModel\Common\Address;
 use Opg\Refunds\Caseworker\DataModel\Common\Name;
 
-class Current
+class Current extends AbstractDataModel
 {
     /**
      * @var Name
@@ -78,5 +79,26 @@ class Current
         $this->dob = $dob;
 
         return $this;
+    }
+
+    /**
+     * Map properties to correct types
+     *
+     * @param string $property
+     * @param mixed $value
+     * @return mixed
+     */
+    protected function map($property, $value)
+    {
+        switch ($property) {
+            case 'name':
+                return (($value instanceof Name || is_null($value)) ? $value : new Name($value));
+            case 'address':
+                return (($value instanceof Address || is_null($value)) ? $value : new Address($value));
+            case 'dob':
+                return (($value instanceof DateTime || is_null($value)) ? $value : new DateTime($value));
+            default:
+                return parent::map($property, $value);
+        }
     }
 }
