@@ -207,6 +207,14 @@ class Poa extends AbstractDataModel
     }
 
     /**
+     * @return bool
+     */
+    public function isComplete(): bool
+    {
+        return !empty($this->caseNumber) && !empty($this->receivedDate) && !empty($this->originalPaymentAmount);
+    }
+
+    /**
      * Map properties to correct types
      *
      * @param string $property
