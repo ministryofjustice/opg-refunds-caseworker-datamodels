@@ -133,7 +133,7 @@ class Poa extends AbstractDataModel
     /**
      * @return string
      */
-    public function getOriginalPaymentAmount(): string
+    public function getOriginalPaymentAmount()
     {
         return $this->originalPaymentAmount;
     }
