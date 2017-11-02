@@ -328,7 +328,7 @@ class Claim extends AbstractDataModel
      * @param string $finishedByName
      * @return $this
      */
-    public function setFinishedByName(string $finishedByName): ClaimSummary
+    public function setFinishedByName(string $finishedByName)
     {
         $this->finishedByName = $finishedByName;
 
