@@ -681,6 +681,20 @@ class Claim extends AbstractDataModel
     }
 
     /**
+     * @return float
+     */
+    public function getRefundInterestAmount()
+    {
+        $refundInterestAmount = 0.0;
+
+        foreach ($this->getPoas() as $poa) {
+            $refundInterestAmount += $poa->getRefundInterestAmount();
+        }
+
+        return $refundInterestAmount;
+    }
+
+    /**
      * @return bool
      */
     public function isClaimRefundNonZero()
