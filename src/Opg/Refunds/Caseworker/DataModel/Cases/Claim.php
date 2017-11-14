@@ -402,6 +402,14 @@ class Claim extends AbstractDataModel
     }
 
     /**
+     * @return bool
+     */
+    public function hasAccountHash(): bool
+    {
+        return $this->accountHash !== null;
+    }
+
+    /**
      * @return Poa[]
      */
     public function getPoas()
@@ -551,6 +559,14 @@ class Claim extends AbstractDataModel
         $this->accountHashCount = $accountHashCount;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAccountHashCount(): bool
+    {
+        return $this->accountHashCount !== null;
     }
 
     /**
