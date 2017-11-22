@@ -9,6 +9,7 @@ use Opg\Refunds\Caseworker\DataModel\Cases\Poa as PoaModel;
 use Opg\Refunds\Caseworker\DataModel\Cases\Verification as VerificationModel;
 use DateTime;
 use Opg\Refunds\Caseworker\DataModel\MoneyFormatter;
+use Opg\Refunds\Caseworker\DataModel\StatusFormatter;
 
 /**
  * Class Claim
@@ -840,20 +841,7 @@ class Claim extends AbstractDataModel
      */
     public function getStatusText(): string
     {
-        switch ($this->getStatus()) {
-            case self::STATUS_PENDING:
-                return 'Pending';
-            case self::STATUS_IN_PROGRESS:
-                return 'In Progress';
-            case self::STATUS_DUPLICATE:
-                return 'Duplicate';
-            case self::STATUS_REJECTED:
-                return 'Rejected';
-            case self::STATUS_ACCEPTED:
-                return 'Accepted';
-            default:
-                return 'Unknown';
-        }
+        return StatusFormatter::getStatusText($this->getStatus());
     }
 
     /**
