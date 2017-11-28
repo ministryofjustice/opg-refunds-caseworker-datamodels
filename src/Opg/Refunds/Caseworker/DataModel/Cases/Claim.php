@@ -930,6 +930,14 @@ class Claim extends AbstractDataModel
     }
 
     /**
+     * @return bool
+     */
+    public function canResolveAsDuplicate(): bool
+    {
+        return $this->getStatus() === ClaimModel::STATUS_IN_PROGRESS && !$this->hasPoas();
+    }
+
+    /**
      * Map properties to correct types
      *
      * @param string $property
