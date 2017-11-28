@@ -652,7 +652,7 @@ class Claim extends AbstractDataModel
     /**
      * @return array
      */
-    public function getDuplicateOfIds(): array
+    public function getDuplicateOfIds()
     {
         return $this->duplicateOfIds;
     }
@@ -671,7 +671,7 @@ class Claim extends AbstractDataModel
     /**
      * @return array
      */
-    public function getDuplicateClaimIds(): array
+    public function getDuplicateClaimIds()
     {
         return $this->duplicateClaimIds;
     }
