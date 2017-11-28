@@ -683,7 +683,7 @@ class Claim extends AbstractDataModel
     public function setDuplicateClaimIds(array $duplicateClaimIds): Claim
     {
         $this->duplicateClaimIds = $duplicateClaimIds;
-        
+
         return $this;
     }
 
@@ -982,7 +982,8 @@ class Claim extends AbstractDataModel
      */
     public function canResolveAsDuplicate(): bool
     {
-        return $this->getStatus() === ClaimModel::STATUS_IN_PROGRESS && !$this->hasPoas();
+        return $this->getStatus() === ClaimModel::STATUS_IN_PROGRESS && !$this->hasPoas()
+            && !$this->isNoSiriusPoas() && !$this->isNoMerisPoas();
     }
 
     /**
