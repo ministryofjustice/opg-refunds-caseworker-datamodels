@@ -986,6 +986,13 @@ class Claim extends AbstractDataModel
             && !$this->isNoSiriusPoas() && !$this->isNoMerisPoas();
     }
 
+    public function isClaimResolved(): bool
+    {
+        return $this->getStatus() === ClaimModel::STATUS_ACCEPTED
+            || $this->getStatus() === ClaimModel::STATUS_REJECTED
+            || $this->getStatus() === ClaimModel::STATUS_DUPLICATE;
+    }
+
     /**
      * Map properties to correct types
      *
