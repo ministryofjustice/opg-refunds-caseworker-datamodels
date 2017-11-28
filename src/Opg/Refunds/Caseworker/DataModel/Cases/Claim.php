@@ -156,6 +156,16 @@ class Claim extends AbstractDataModel
     protected $readOnly;
 
     /**
+     * @var array
+     */
+    protected $duplicateOfIds;
+
+    /**
+     * @var array
+     */
+    protected $duplicateClaimIds;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -636,6 +646,44 @@ class Claim extends AbstractDataModel
     {
         $this->readOnly = $readOnly;
 
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDuplicateOfIds(): array
+    {
+        return $this->duplicateOfIds;
+    }
+
+    /**
+     * @param array $duplicateOfIds
+     * @return $this
+     */
+    public function setDuplicateOfIds(array $duplicateOfIds): Claim
+    {
+        $this->duplicateOfIds = $duplicateOfIds;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDuplicateClaimIds(): array
+    {
+        return $this->duplicateClaimIds;
+    }
+
+    /**
+     * @param array $duplicateClaimIds
+     * @return $this
+     */
+    public function setDuplicateClaimIds(array $duplicateClaimIds): Claim
+    {
+        $this->duplicateClaimIds = $duplicateClaimIds;
+        
         return $this;
     }
 
