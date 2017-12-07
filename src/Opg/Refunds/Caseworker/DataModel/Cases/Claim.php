@@ -1048,6 +1048,27 @@ class Claim extends AbstractDataModel
     /**
      * @return bool
      */
+    public function shouldSendEmail(): bool
+    {
+        $contact = $this->getApplication()->getContact();
+
+        return !$this->isOutcomeEmailSent() && $contact->hasEmail();
+    }
+
+    /**
+     * @return bool
+     */
+    public function shouldSendText(): bool
+    {
+        $contact = $this->getApplication()->getContact();
+
+        return !$this->isOutcomeTextSent()
+            && $contact->hasPhone() && substr($contact->getPhone(), 0, 2) === '07';
+    }
+
+    /**
+     * @return bool
+     */
     public function shouldSendLetter(): bool
     {
         $contact = $this->getApplication()->getContact();
