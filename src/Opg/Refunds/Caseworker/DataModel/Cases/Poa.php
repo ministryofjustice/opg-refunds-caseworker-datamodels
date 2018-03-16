@@ -371,65 +371,48 @@ class Poa extends AbstractDataModel
     }
 
     /**
-     * @return bool
-     */
-    public function isComplete(): bool
-    {
-        $isAttorneyComplete = (!$this->hasAttorneyNameVerification() && !$this->hasAttorneyDobVerification())
-            || ($this->hasAttorneyNameVerification() && $this->hasAttorneyDobVerification());
-
-        return !empty($this->caseNumber) && !empty($this->receivedDate) && !empty($this->originalPaymentAmount)
-            && $isAttorneyComplete;
-    }
-
-    /**
      * @param Claim $parentClaim
      * @return bool
      */
-    public function isComplete2(Claim $parentClaim): bool
+    public function isComplete(Claim $parentClaim): bool
     {
         //  Perform the simple checks on missing data
-        if (!empty($this->caseNumber) && !empty($this->receivedDate) && !empty($this->originalPaymentAmount)) {
+        if (empty($this->caseNumber) || empty($this->receivedDate) || empty($this->originalPaymentAmount)) {
             return false;
         }
 
         //  Check for missing verifications
 
-        //  Attorney. Only present if not already verified and for backwards compatibility with older claims
+        //  Attorney. Only needed if not already verified and for backwards compatibility with older claims
         if (!$parentClaim->isAttorneyVerified() && !$this->hasAttorneyVerification()) {
             return false;
         }
 
-        //  Attorney name and dob. Only present if neither already verified
-        if (!$parentClaim->isAttorneyNameVerified() || !$parentClaim->isAttorneyDobVerified()
-            || ($poa !== null && ($poa->hasAttorneyNameVerification() || $poa->hasAttorneyDobVerification()))) {
-            $this->addVerificationRadio('attorney-name', $inputFilter);
-            $this->addVerificationRadio('attorney-dob', $inputFilter)->getValidatorChain()->attach(
-                new Validator\InvalidValueCombination($this->get('attorney-dob'), $this->get('attorney-name'), [
-                    'value' => 'yes',
-                    'dependentValue' => 'no'
-                ])
-            );
+        //  Attorney name and dob. Only needed if neither already verified
+        if ((!$parentClaim->isAttorneyNameVerified() || !$parentClaim->isAttorneyDobVerified())
+            && (!$this->hasAttorneyNameVerification() || !$this->hasAttorneyDobVerification())) {
+            return false;
         }
 
-        //  Donor postcode. Only if supplied by claimant and not already verified
+        //  Additionally check that both attorney name and dob are present or neither are
+        if (($this->hasAttorneyNameVerification() && !$this->hasAttorneyDobVerification())
+            || (!$this->hasAttorneyNameVerification() && $this->hasAttorneyDobVerification())) {
+            return false;
+        }
+
+        //  Donor postcode. Only needed if supplied by claimant and not already verified
         if ($parentClaim->getApplication()->hasDonorPostcode() &&
-            (!$claim->isDonorPostcodeVerified() || ($poa !== null && $poa->hasDonorPostcodeVerification()))) {
-            $this->addVerificationRadio('donor-postcode', $inputFilter);
+            !$parentClaim->isDonorPostcodeVerified() && !$this->hasDonorPostcodeVerification()) {
+            return false;
         }
 
-        //  Attorney postcode
+        //  Attorney postcode. Only needed if supplied by claimant and not already verified
         if ($parentClaim->getApplication()->hasAttorneyPostcode() &&
-            (!$claim->isAttorneyPostcodeVerified() || ($poa !== null && $poa->hasAttorneyPostcodeVerification()))) {
-            $this->addVerificationRadio('attorney-postcode', $inputFilter);
+            !$parentClaim->isAttorneyPostcodeVerified() && !$this->hasAttorneyPostcodeVerification()) {
+            return false;
         }
 
-
-        $isAttorneyComplete = (!$this->hasAttorneyNameVerification() && !$this->hasAttorneyDobVerification())
-            || ($this->hasAttorneyNameVerification() && $this->hasAttorneyDobVerification());
-
-        return !empty($this->caseNumber) && !empty($this->receivedDate) && !empty($this->originalPaymentAmount)
-            && $isAttorneyComplete;
+        return true;
     }
 
     /**
