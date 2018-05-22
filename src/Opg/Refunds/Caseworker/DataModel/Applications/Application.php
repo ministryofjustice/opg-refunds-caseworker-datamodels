@@ -11,6 +11,10 @@ use DateTime;
  */
 class Application extends AbstractDataModel
 {
+    const APPLICANT_DONOR = 'donor';
+    const APPLICANT_ATTORNEY = 'attorney';
+    const APPLICANT_EXECUTOR = 'executor';
+
     /**
      * @var string
      */
